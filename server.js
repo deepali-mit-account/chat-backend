@@ -7,24 +7,24 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-  "https://chat-app-final-deepalik-mitedu-deepali-kishnanis-projects.vercel.app/", // Frontend URL
+  "https://chat-app-final-deepalik-mitedu-deepali-kishnanis-projects.vercel.app/", // Add your frontend's URL
 ];
 
-// Configure Express CORS middleware
+// Configure Express CORS
 app.use(
   cors({
-    origin: allowedOrigins, // Allow only your frontend domain
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
-    credentials: true, // Allow cookies or credentials if needed
+    credentials: true, // Allow credentials if necessary
   })
 );
 
 // Configure Socket.IO CORS
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins, // Allow only your frontend domain
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
-    credentials: true, // Allow cookies or credentials if needed
+    credentials: true, // Enable credentials for cross-origin
   },
 });
 
@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
   res.send("Backend server is running and ready for connections!");
 });
 
-// WebSocket setup
+// WebSocket connection
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// Start server
+// Start the server
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
