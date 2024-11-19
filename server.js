@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 const server = http.createServer(app);
 const allowedOrigins = [
-  "https://chat-app-final-three.vercel.app/", // Replace with your actual frontend URL
+  "https://chat-app-final-deepalik-mitedu-deepali-kishnanis-projects.vercel.app/", // Replace with your actual frontend URL
 ];
 
 // Middleware for CORS
