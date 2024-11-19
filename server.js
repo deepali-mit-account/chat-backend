@@ -12,8 +12,15 @@ const io = new Server(server, {
   },
 });
 
+// Middleware
 app.use(cors());
 
+// Define a default route to handle GET requests to the root
+app.get("/", (req, res) => {
+  res.send("Backend server is running and ready for connections!");
+});
+
+// WebSocket connection setup
 io.on("connection", (socket) => {
   console.log("A user connected");
 
@@ -26,6 +33,7 @@ io.on("connection", (socket) => {
   });
 });
 
+// Start the server
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
